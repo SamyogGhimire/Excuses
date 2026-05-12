@@ -1,0 +1,43 @@
+# dependencies
+node_modules/
+
+# environment variables
+.env
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build files
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vite
+.vite/
+
+# coverage
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+
+# temporary files
+*.tmp
+*.swp
+
+# uploads
+uploads/
+
+# dotenv variants
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
