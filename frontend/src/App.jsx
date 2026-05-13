@@ -1,14 +1,11 @@
-import { useState } from 'react';
-import ExcuseForm from './components/ExcuseForm';
+import ExcuseForm from "./components/ExcuseForm";
 
-function App(){
-  return(
+export default function App() {
+  return (
     <div className="container">
       <h1>Excuse Generator</h1>
-      <p>Generate believable excuses for escaping your responsibilities.</p>
+      <p>Turn messy situations into believable exit plans—fast, clean, and readable.</p>
       <ExcuseForm />
     </div>
   );
 }
-
-export default App;
