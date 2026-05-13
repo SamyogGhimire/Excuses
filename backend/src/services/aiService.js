@@ -23,23 +23,27 @@ const generateExcuseFromAI = async (
           role: "user",
 
           content: `
-Return ONLY valid JSON.
+            Return ONLY raw valid JSON.
 
-Format:
-
-{
-  "excuse": "",
-  "shortVersion": "",
-  "believabilityScore": "",
-  "riskLevel": ""
-}
-
-Category:
-${category}
-
-Situation:
-${context}
-`
+            DO NOT use markdown.
+            DO NOT wrap the response in json.
+            DO NOT add explanations.
+                    
+            Format:
+                    
+            {
+              "excuse": "",
+              "shortVersion": "",
+              "believabilityScore": "",
+              "riskLevel": ""
+            }
+                    
+            Category:
+            ${category}
+                    
+            Situation:
+            ${context}
+            `
         }
 
       ]
@@ -56,10 +60,32 @@ ${context}
     }
   );
 
-  const content =
+  try {
+
+  const rawContent =
     response.data.choices[0].message.content;
 
-  return JSON.parse(content);
+  const cleanedContent = rawContent
+    .replace(/```json/g, "")
+    .replace(/```/g, "")
+    .trim();
+
+  const parsedData =
+    JSON.parse(cleanedContent);
+
+  return parsedData;
+
+} catch (error) {
+
+  console.error(
+    "Failed to parse AI response:",
+    error
+  );
+
+  throw new Error(
+    "Invalid AI JSON response"
+  );
+}
 
 };
 

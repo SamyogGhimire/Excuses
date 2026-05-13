@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import axios from "axios";
 
 const categories = [
-  { value: "meetings", label: "Meetings" },
+  { value: "relationships", label: "Relationships" },
   { value: "dates", label: "Dates" },
   { value: "weddings", label: "Weddings" },
   { value: "group trips", label: "Group Trips" },
@@ -20,7 +20,7 @@ export default function ExcuseForm() {
   const [context, setContext] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState("meetings");
+  const [category, setCategory] = useState("relationships");
   const [error, setError] = useState("");
 
   const scoreColor = useMemo(() => {
@@ -100,11 +100,16 @@ export default function ExcuseForm() {
         <button
           className="primary-btn"
           onClick={generateExcuse}
-          disabled={loading}
+          disabled={loading || !context.trim()}
           type="button"
+          title={!context.trim() ? "Type a situation first" : ""}
         >
           {loading ? "Generating..." : "Generate Excuse"}
         </button>
+
+        <div className="help-text" aria-live="polite">
+          Tip: press <span className="kbd">Generate</span> when you’re ready.
+        </div>
 
         <button
           className="ghost-btn"
