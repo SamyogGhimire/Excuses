@@ -154,7 +154,7 @@ export default function ExcuseForm() {
             <div className="pill">
               <span className="pill-label">Believability</span>
               <span className="pill-value" style={{ color: scoreColor }}>
-                {result.believabilityScore}/100
+                {result.believabilityScore}
               </span>
             </div>
 
