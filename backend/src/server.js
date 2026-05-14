@@ -7,10 +7,18 @@ const excuseRoutes = require("./routes/excuseRoutes");
 
 const app = express();
 
-app.use(cors({
+const corsOptions = {
   origin: "https://excuses-dun.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
-}));
+};
+
+// ✅ Handle preflight requests for ALL routes — must be before routes
+app.options("*", cors(corsOptions));
+
+// ✅ Apply CORS to all requests
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
