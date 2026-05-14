@@ -14,12 +14,8 @@ const corsOptions = {
   credentials: true
 };
 
-// ✅ Handle preflight requests for ALL routes — must be before routes
-app.options("*", cors(corsOptions));
-
-// ✅ Apply CORS to all requests
+app.options("(.*)", cors(corsOptions)); // ✅ Express 5 compatible
 app.use(cors(corsOptions));
-
 app.use(express.json());
 
 app.use("/", excuseRoutes);
