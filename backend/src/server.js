@@ -14,8 +14,9 @@ const corsOptions = {
   credentials: true
 };
 
-// ✅ No app.options() line at all — app.use handles everything
+app.options("*", cors(corsOptions)); // handle preflight
 app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use("/", excuseRoutes);
