@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const generateExcuseFromAI = async (context, category) => {
   try {
     const response = await axios.post(
@@ -48,8 +50,9 @@ const generateExcuseFromAI = async (context, category) => {
     return JSON.parse(cleanedContent);
 
   } catch (error) {
-    // ✅ Now logs the REAL error (e.g. 401 invalid API key, timeout, etc.)
     console.error("Groq API error:", error.response?.data || error.message);
     throw new Error("Failed to generate excuse");
   }
 };
+
+module.exports = { generateExcuseFromAI };
