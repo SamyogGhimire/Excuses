@@ -39,10 +39,14 @@ export default function ExcuseForm() {
     setResult(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/generate", {
-        context,
-        category,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/generate`,
+        {
+          context,
+          category,
+        }
+      );
+      
       setResult(response.data);
     } catch (e) {
       setError(
