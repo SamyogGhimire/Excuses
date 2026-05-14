@@ -14,7 +14,7 @@ const corsOptions = {
   credentials: true
 };
 
-app.options("(.*)", cors(corsOptions)); // ✅ Express 5 compatible
+// ✅ No app.options() line at all — app.use handles everything
 app.use(cors(corsOptions));
 app.use(express.json());
 
